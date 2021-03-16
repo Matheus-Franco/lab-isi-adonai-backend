@@ -4,5 +4,11 @@
     "port": 5432,
     "password": "adonai",
     "username": "postgres",
-    "database": "adonai"
+    "database": "adonai",
+    "migrations": [
+        "./src/database/migrations/*.ts"
+    ],
+    "cli": {
+        "migrationsDir": "./src/database/migrations"
+    }
 }
