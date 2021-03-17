@@ -1,5 +1,5 @@
 import express from 'express';
-import './database';
+import '../typeorm';
 
 const app = express();
 
