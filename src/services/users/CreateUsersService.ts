@@ -1,6 +1,8 @@
 import User from "../../models/User";
 import UsersRepository from "../../repositories/UsersRepository";
 
+import { hash } from "bcryptjs";
+
 interface IRequest {
     name: string
     email: string
@@ -25,10 +27,12 @@ export default class CreateUsersService {
             throw new Error('Este e-mail já se encontra em uso.');
         };
 
+        const hashedPassword = await hash(password, 8);
+
         const user = await this.usersRepository.createUser({
             name,
             email,
-            password
+            password: hashedPassword
         });
 
         return user;
