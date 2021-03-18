@@ -33,9 +33,6 @@ class AuthenticateAdminService {
             throw new Error('E-mail ou senha incorretos');
         }
 
-        console.log("###################################################")
-        console.log(password, admin.password)
-
         if (password !== '123456') {
             const passwordMatched = await compare(password, admin.password);
 
