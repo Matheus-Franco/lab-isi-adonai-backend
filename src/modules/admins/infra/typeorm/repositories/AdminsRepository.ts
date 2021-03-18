@@ -2,9 +2,18 @@ import { getRepository, Repository } from 'typeorm';
 
 import IAdminsRepository from '../../../repositories/IAdminsRepository';
 import Admins from '../entities/Admin';
+import Offer from '../entities/Offer';
+
+interface ICreateOfferData {
+    title: string;
+    description: string;
+    price: string;
+    year_model: string;
+}
 
 class AdminsRepository implements IAdminsRepository {
     private ormRepository: Repository<Admins>
+    private offerOrmRepository: Repository<Offer>
 
     constructor() {
         this.ormRepository = getRepository(Admins)
@@ -25,6 +34,15 @@ class AdminsRepository implements IAdminsRepository {
 
         return admin;
     }
+
+    public async createOffer(offerData: ICreateOfferData): Promise<Offer> {
+        const offer = this.offerOrmRepository.create(offerData);
+
+        await this.offerOrmRepository.save(offer);
+
+        return offer;
+    }
+
 }
 
 export default AdminsRepository;
