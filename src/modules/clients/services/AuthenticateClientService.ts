@@ -29,13 +29,13 @@ class AuthenticateClientService {
         const client = await this.clientsRepository.findByEmail(email);
 
         if (!client) {
-            throw new Error('Incorrect E-mail/password combination.');
+            throw new Error('E-mail ou senha incorretos.');
         }
 
         const passwordMatched = await compare(password, client.password);
 
         if (!passwordMatched) {
-            throw new Error('Incorrect E-mail/password combination.');
+            throw new Error('E-mail ou senha incorretos.');
         }
 
         const { secret, expiresIn } = authenticationConfig.jwt;
