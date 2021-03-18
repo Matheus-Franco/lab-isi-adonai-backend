@@ -11,19 +11,19 @@ class ClientTokenRepository implements IClientTokenRepository {
     }
 
     public async findByToken(token: string): Promise<ClientToken | undefined> {
-        const userToken = await this.ormRepository.findOne({
+        const clientToken = await this.ormRepository.findOne({
             where: { token }
-        })
+        });
 
-        return userToken
+        return clientToken;
     }
 
     public async generate(client_id: string): Promise<ClientToken> {
-        const userToken = this.ormRepository.create({ client_id })
+        const clientToken = this.ormRepository.create({ client_id });
 
-        await this.ormRepository.save(userToken)
+        await this.ormRepository.save(clientToken);
 
-        return userToken;
+        return clientToken;
     }
 }
 
