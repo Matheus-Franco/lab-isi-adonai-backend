@@ -12,10 +12,6 @@ interface IRequest {
     year_model: string;
 }
 
-interface IResponse {
-    offer: Offer;
-}
-
 @injectable()
 class AuthenticateAdminService {
     constructor(
@@ -23,12 +19,12 @@ class AuthenticateAdminService {
         private adminsRepository: IAdminsRepository,
     ) { }
 
-    public async execute({ title, description, price, year_model }: IRequest): Promise<IResponse> {
+    public async execute({ title, description, price, year_model }: IRequest): Promise<Offer> {
         const offer = await this.adminsRepository.createOffer({
             title, description, price, year_model
         });
 
-        return { offer };
+        return offer;
     }
 }
 
