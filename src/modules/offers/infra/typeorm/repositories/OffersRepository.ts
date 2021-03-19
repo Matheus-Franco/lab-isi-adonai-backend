@@ -31,6 +31,16 @@ class OffersRepository implements IOffersRepository {
         return offers
     }
 
+    public async listCreatetOffersBySearchParams(year_model: any): Promise<Offer[] | undefined> {
+        const offers = await this.ormRepository.find({
+            where: {
+                year_model
+            }
+        });
+
+        return offers;
+    }
+
 }
 
 export default OffersRepository;

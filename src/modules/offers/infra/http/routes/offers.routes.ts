@@ -8,5 +8,6 @@ const offersController = new OffersController();
 
 offersRouter.post('/', ensureAuthenticated , offersController.create)
 offersRouter.get('/', offersController.index)
+offersRouter.get('/search', offersController.indexBySearchParams)
 
 export default offersRouter
