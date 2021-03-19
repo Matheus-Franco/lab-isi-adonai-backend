@@ -14,6 +14,6 @@ routes.use('/sessions', sessionsRouter);
 
 routes.use('/admin/sessions', adminSessionsRouter);
 
-routes.use('/admin/offers', offersRouter);
+routes.use('/offers', offersRouter);
 
 export default routes;
