@@ -44,6 +44,12 @@ class AdminsRepository implements IAdminsRepository {
         return offer;
     }
 
+    public async listAllCreatedOffers(): Promise<Offer[]> {
+        const offers = await this.offerOrmRepository.find();
+
+        return offers
+    }
+
 }
 
 export default AdminsRepository;
