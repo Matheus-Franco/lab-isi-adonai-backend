@@ -3,7 +3,7 @@ import "reflect-metadata"
 import { inject, injectable } from 'tsyringe'
 
 import Offer from "../infra/typeorm/entities/Offer";
-import IAdminsRepository from "../repositories/IAdminsRepository";
+import IOffersRepository from "../repositories/IOffersRepository";
 
 interface IRequest {
     title: string;
@@ -13,14 +13,14 @@ interface IRequest {
 }
 
 @injectable()
-class AuthenticateAdminService {
+class CreateOfferService {
     constructor(
-        @inject('AdminsRepository')
-        private adminsRepository: IAdminsRepository,
+        @inject('OffersRepository')
+        private offersRepository: IOffersRepository
     ) { }
 
     public async execute({ title, description, price, year_model }: IRequest): Promise<Offer> {
-        const offer = await this.adminsRepository.createOffer({
+        const offer = await this.offersRepository.createOffer({
             title, description, price, year_model
         });
 
@@ -28,4 +28,4 @@ class AuthenticateAdminService {
     }
 }
 
-export default AuthenticateAdminService;
+export default CreateOfferService;

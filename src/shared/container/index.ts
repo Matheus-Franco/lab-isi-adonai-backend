@@ -12,8 +12,13 @@ import AdminsRepository from '../../modules/admins/infra/typeorm/repositories/Ad
 import IAdminTokenRepository from '../../modules/admins/repositories/IAdminTokenRepository';
 import AdminTokenRepository from '../../modules/admins/infra/typeorm/repositories/AdminTokenRepository';
 
+import IOffersRepository from '../../modules/offers/repositories/IOffersRepository';
+import OffersRepository from '../../modules/offers/infra/typeorm/repositories/OffersRepository';
+
 container.registerSingleton<IClientsRepository>('ClientsRepository', ClientsRepository);
 container.registerSingleton<IClientTokenRepository>('ClientTokenRepository', ClientTokenRepository);
 
 container.registerSingleton<IAdminsRepository>('AdminsRepository', AdminsRepository);
 container.registerSingleton<IAdminTokenRepository>('AdminTokenRepository', AdminTokenRepository);
+
+container.registerSingleton<IOffersRepository>('OffersRepository', OffersRepository);

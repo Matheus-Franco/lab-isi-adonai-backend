@@ -1,17 +1,17 @@
 import { inject, injectable } from 'tsyringe';
 
 import Offer from '../infra/typeorm/entities/Offer';
-import IAdminsRepository from '../repositories/IAdminsRepository';
+import IOffersRepository from '../repositories/IOffersRepository';
 
 @injectable()
-class ListArticleByIdService {
+class ListAllCreatedOffers {
   constructor(
-    @inject('AdminsRepository')
-    private adminsRepository: IAdminsRepository,
+    @inject('OffersRepository')
+    private offersRepository: IOffersRepository
   ) {}
 
   public async execute(): Promise<Offer[]> {
-    const articles = await this.adminsRepository.listAllCreatedOffers();
+    const articles = await this.offersRepository.listAllCreatedOffers();
 
     if (!articles) {
       throw new Error('Nenhuma oferta encontrada');
@@ -21,4 +21,4 @@ class ListArticleByIdService {
   }
 }
 
-export default ListArticleByIdService;
+export default ListAllCreatedOffers;

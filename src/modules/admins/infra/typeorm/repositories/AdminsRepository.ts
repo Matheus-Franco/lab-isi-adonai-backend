@@ -2,7 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 
 import IAdminsRepository from '../../../repositories/IAdminsRepository';
 import Admins from '../entities/Admin';
-import Offer from '../entities/Offer';
+import Offer from '../../../../offers/infra/typeorm/entities/Offer';
 
 interface ICreateOfferData {
     title: string;
