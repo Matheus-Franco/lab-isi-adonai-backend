@@ -10,8 +10,8 @@ class ListAllCreatedOffers {
     private offersRepository: IOffersRepository
   ) {}
 
-  public async execute(): Promise<Offer[]> {
-    const articles = await this.offersRepository.listAllCreatedOffers();
+  public async execute(year_model?: any): Promise<Offer[]> {
+    const articles = await this.offersRepository.listAllCreatedOffers(year_model);
 
     if (!articles) {
       throw new Error('Nenhuma oferta encontrada');

@@ -25,20 +25,14 @@ class OffersRepository implements IOffersRepository {
         return offer;
     }
 
-    public async listAllCreatedOffers(): Promise<Offer[]> {
-        const offers = await this.ormRepository.find();
-
-        return offers
-    }
-
-    public async listCreatetOffersBySearchParams(year_model: any): Promise<Offer[] | undefined> {
+    public async listAllCreatedOffers(year_model?: any): Promise<Offer[]> {
         const offers = await this.ormRepository.find({
-            where: {
-                year_model
-            }
+            where: { year_model }
         });
 
-        return offers;
+        const offersTeste = await this.ormRepository.find();
+
+        return year_model ? offers : offersTeste
     }
 
 }

@@ -19,19 +19,11 @@ export default class OffersController {
     }
 
     public async index(request: Request, response: Response): Promise<Response> {
-        const listOffers = container.resolve(ListAllCreatedOffers)
-        
-        const offers = await listOffers.execute();
-
-        return response.json(offers);
-    }
-
-    public async indexBySearchParams(request: Request, response: Response): Promise<Response> {
         const { year_model } = request.query;
 
-        const listOffers = container.resolve(ListCreatedOffersBySearchParamsService)
+        const listOffers = container.resolve(ListAllCreatedOffers)
         
-        const offers = await listOffers.execute(year_model)
+        const offers = await listOffers.execute(year_model);
 
         return response.json(offers);
     }

@@ -10,6 +10,5 @@ interface ICreateOfferData {
 
 export default interface IOffersRepository {
     createOffer(offerData: ICreateOfferData): Promise<Offer>;
-    listAllCreatedOffers(): Promise<Offer[]>;
-    listCreatetOffersBySearchParams(year_model: any): Promise<Offer[] | undefined>;
+    listAllCreatedOffers(year_model?: any): Promise<Offer[]>;
 }
