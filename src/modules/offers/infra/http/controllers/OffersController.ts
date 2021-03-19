@@ -3,7 +3,6 @@ import { container } from 'tsyringe';
 
 import CreateOfferService from '../../../services/CreateOfferService';
 import ListAllCreatedOffers from '../../../services/ListAllCreatedOffers';
-import ListCreatedOffersBySearchParamsService from '../../../services/ListCreatedOffersBySearchParamsService';
 
 export default class OffersController {
     public async create(request: Request, response: Response): Promise<Response> {
