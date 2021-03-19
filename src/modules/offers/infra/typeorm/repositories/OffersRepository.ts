@@ -35,6 +35,16 @@ class OffersRepository implements IOffersRepository {
         return year_model ? offers : offersTeste
     }
 
+    public async findOfferById(offer_id: string): Promise<Offer | undefined> {
+        const offer = await this.ormRepository.findOne({
+            where: {
+                id: offer_id
+            }
+        });
+
+        return offer;
+    }
+
 }
 
 export default OffersRepository;
