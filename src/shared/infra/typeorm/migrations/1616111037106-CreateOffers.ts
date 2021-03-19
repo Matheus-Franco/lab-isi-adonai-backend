@@ -1,11 +1,11 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateAdmins1615940776554 implements MigrationInterface {
+export class CreateOffers1616111037106 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'admins',
+                name: 'offers',
                 columns: [
                     {
                         name: 'id',
@@ -15,17 +15,25 @@ export class CreateAdmins1615940776554 implements MigrationInterface {
                         default: 'uuid_generate_v4()',
                     },
                     {
-                        name: 'name',
+                        name: 'title',
                         type: 'varchar',
                     },
                     {
-                        name: 'email',
+                        name: 'description',
                         type: 'varchar',
-                        isUnique: true,
                     },
                     {
-                        name: 'password',
+                        name: 'price',
                         type: 'varchar',
+                    },
+                    {
+                        name: 'year_model',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'admin_offer',
+                        type: 'uuid',
+                        isNullable: true
                     },
                     {
                         name: 'created_at',
@@ -37,39 +45,24 @@ export class CreateAdmins1615940776554 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()',
                     },
+                ],
+                foreignKeys: [
+                    {
+                        name: 'AdminOffer',
+                        referencedTableName: 'admins',
+                        referencedColumnNames: ['id'],
+                        columnNames: ['admin_offer'],
+                        onDelete: 'CASCADE',
+                        onUpdate: 'CASCADE',
+                    }
                 ]
             })
         )
-
-        await queryRunner.manager
-            .createQueryBuilder()
-            .insert()
-            .into('admins')
-            .values([
-                {
-                    name: 'Manager',
-                    email: 'manager@adonai.com',
-                    password: '123456'
-                }
-            ])
-            .execute();
     }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.manager
-            .createQueryBuilder()
-            .delete()
-            .from('admins')
-            .where([
-                {
-                    name: 'Manager',
-                    email: 'manager@adonai.com',
-                    password: '123456'
-                }
-            ])
-            .execute();
 
-        await queryRunner.dropTable('admins')
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('offers')
     }
 
 }

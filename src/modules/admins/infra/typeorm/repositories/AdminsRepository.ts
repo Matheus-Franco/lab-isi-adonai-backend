@@ -17,6 +17,7 @@ class AdminsRepository implements IAdminsRepository {
 
     constructor() {
         this.ormRepository = getRepository(Admins)
+        this.offerOrmRepository = getRepository(Offer)
     }
 
     public async findById(id: string): Promise<Admins | undefined> {

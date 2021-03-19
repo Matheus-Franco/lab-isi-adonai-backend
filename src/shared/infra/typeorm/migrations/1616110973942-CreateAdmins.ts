@@ -1,13 +1,11 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export default class CreateClients1615930069266 implements MigrationInterface {
+export class CreateAdmins1616110973942 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
-
         await queryRunner.createTable(
             new Table({
-                name: 'clients',
+                name: 'admins',
                 columns: [
                     {
                         name: 'id',
@@ -42,9 +40,36 @@ export default class CreateClients1615930069266 implements MigrationInterface {
                 ]
             })
         )
+
+        await queryRunner.manager
+            .createQueryBuilder()
+            .insert()
+            .into('admins')
+            .values([
+                {
+                    name: 'Manager',
+                    email: 'manager@adonai.com',
+                    password: '123456'
+                }
+            ])
+            .execute();
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.manager
+            .createQueryBuilder()
+            .delete()
+            .from('admins')
+            .where([
+                {
+                    name: 'Manager',
+                    email: 'manager@adonai.com',
+                    password: '123456'
+                }
+            ])
+            .execute();
+
+        await queryRunner.dropTable('admins')
     }
 
 }
